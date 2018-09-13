@@ -1,6 +1,8 @@
 # BulkRouting
 add bulk_create, bulk_update, bulk_destroy to Rails routes
 
+[![Build Status](https://travis-ci.org/booink/rails-bulk_routing.svg?branch=master)](https://travis-ci.org/booink/rails-bulk_routing)
+
 ## Installation
 Add this line to your application's Gemfile:
 
