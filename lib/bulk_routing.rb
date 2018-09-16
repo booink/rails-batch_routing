@@ -55,21 +55,7 @@ module BulkRouting
   end
 end
 
-# rubocop:disable Style/Documentation
-module ActionDispatch
-  module Routing
-    class Mapper
-      prepend BulkRouting::Resources
-      module Resources
-        remove_const(:RESOURCE_OPTIONS)
-        RESOURCE_OPTIONS = %i[as controller path only
-                              except param concerns bulk].freeze
-
-        class Resource
-          prepend BulkRouting::Resources::Resource
-        end
-      end
-    end
-  end
-end
-# rubocop:enable Style/Documentation
+ActionDispatch::Routing::Mapper.send(:prepend, BulkRouting::Resources)
+ActionDispatch::Routing::Mapper::Resources::RESOURCE_OPTIONS << :bulk
+ActionDispatch::Routing::Mapper::Resources::Resource
+  .send(:prepend, BulkRouting::Resources::Resource)
